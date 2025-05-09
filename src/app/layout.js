@@ -1,5 +1,14 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Geist, Geist_Mono, Karla } from "next/font/google";
+import "../main.scss";
+import Sidebar from "@/components/sidebar";
+import Header from "@/components/header";
+import Pagewrapper from "@/components/pagewrapper";
+
+const karla = Karla({
+  variable: "--font-karla",
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +29,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable}${karla.variable} antialiased`}
       >
-        {children}
+        <Sidebar></Sidebar>
+        <Header></Header>
+        <Pagewrapper>{children}</Pagewrapper>
       </body>
     </html>
   );
